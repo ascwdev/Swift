@@ -13,3 +13,12 @@ Still very much a work-in-progress at the moment.
 | --- | --- |
 | `/flip` | Flips a coin. |
 | `/roll` | Rolls a dice. |
+| `/level` | Shows a breakdown of level ranges for Souls games.. |
+| `/server` | Shows server info. |
+| `/stats` | Shows a breakdown of Swift's statistics.. |
+| `/who` | Gets info on a user. |
+| `/role` | Shows role info. |
+| `/ban` | Bans a user. |
+| `/unban` | Unbans a user. |
+| `/banlist` | Shows a list of banned users. |
+| `/kick` | Kicks a user. |
