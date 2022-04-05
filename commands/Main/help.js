@@ -1,7 +1,12 @@
+const fs = require('fs');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed, Permissions } = require('discord.js');
 
 module.exports = {
+    name: 'help',
+    description: 'Displays a help command.',
+    usage: '`/help`\n`/help <command>`',
+    permissions: '`none`',
     data: new SlashCommandBuilder()
         .setName('help')
         .setDescription('Swift will display the help menu. Follow /help with a command to get more info on it.')
@@ -41,9 +46,10 @@ module.exports = {
             return await interaction.reply({ embeds: [embed], components: [row] });
         }
 
-        // Get module.exports from command, match command name with specified <command> string.
-        const command = require(`./${string}`);
 
+        // Get module.exports from command, match command name with specified <command> string.
+        const command = client.commands.get(`${string}`);
+        
         embed.setTitle(`/${command.name}`)
         embed.setDescription(`${command.description}`)
         embed.setFields( 
