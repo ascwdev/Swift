@@ -4,7 +4,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES] });
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
@@ -18,13 +18,17 @@ for (const file of eventFiles) {
 }
 
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFolders = fs.readdirSync('./commands');
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	// Set a new item in the Collection
-	// With the key as the command name and the value as the exported module
-	client.commands.set(command.data.name, command);
+for (const folder of commandFolders) {
+	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+
+	for (const file of commandFiles) {
+		const command = require(`./commands/${folder}/${file}`);
+		// Set a new item in the Collection
+		// With the key as the command name and the value as the exported module		
+		client.commands.set(command.data.name, command);
+	}	
 }
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
@@ -32,7 +36,8 @@ client.once('ready', () => {
 	client.user.setActivity('with your emotions.');
 });
 
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async interaction => {		
+
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);

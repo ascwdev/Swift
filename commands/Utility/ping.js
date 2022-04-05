@@ -1,7 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = {
+    name: '',
+    description: '',
+    usage: '',
+    permissions: '',
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Replies with Pong. Debugging tool.'),
