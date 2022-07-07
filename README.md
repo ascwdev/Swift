@@ -17,6 +17,7 @@ Below is a list of commands for operating Swift.
 | --- | --- | --- |
 | `/flip` | Flips a coin. | 
 | `/roll` | Rolls a dice. |
+| `/reddit` | Retrieves a random post from reddit from a given subreddit. |
 | `/level` | Shows a breakdown of level ranges for Souls games. |
 
 ### 🛡️ Moderation
