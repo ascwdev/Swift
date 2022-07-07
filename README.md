@@ -11,7 +11,7 @@ Below is a list of commands for operating Swift.
 
 ## Command List
 
-### Fun
+### 🎲 Fun
 
 | Command | Description | Permissions |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ Below is a list of commands for operating Swift.
 | `/roll` | Rolls a dice. |
 | `/level` | Shows a breakdown of level ranges for Souls games. |
 
-### Moderation
+### 🛡️ Moderation
 
 | Command | Description | Permissions |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ Below is a list of commands for operating Swift.
 | `/banlist` | Shows a list of banned users. | `BAN_MEMBERS` |
 | `/kick` | Kicks a user. | `KICK_USER` |
 
-### Utility
+### 🛠️ Utility
 
 | Command | Description | Permissions |
 | --- | --- | --- |
