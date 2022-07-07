@@ -12,6 +12,7 @@ Below is a list of commands for operating Swift.
 ## Command List
 
 | Command | Description | Permissions |
+| Fun |
 | --- | --- | --- |
 | `/flip` | Flips a coin. | 
 | `/roll` | Rolls a dice. |
