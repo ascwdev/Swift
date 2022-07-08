@@ -32,7 +32,7 @@ module.exports = {
                 new MessageButton()
                     .setLabel('Full Command List')
                     .setStyle('LINK')
-                    .setURL('https://tfiws.io'),
+                    .setURL('https://github.com/ascwnyc/Swift#readme'),
             );
 
                 embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [tfiws.io/support](https://tfiws.io/support)\n**Invite:** [tfiws.io/invite](https://tfiws.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
