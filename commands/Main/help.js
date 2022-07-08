@@ -18,22 +18,24 @@ module.exports = {
         const { client } = interaction;
         const string = interaction.options.getString('command');
 
-        const isCommand = client.commands.get(`${string}`);
+        // Get module.exports from command, match command name with specified <command> string.
+        const command = client.commands.get(`${string}`);
 
         const embed = new MessageEmbed()
         .setColor('#5866EF')
         .setAuthor({name: 'Swift Help', iconURL: client.user.avatarURL()})
 
-        if (!isCommand) {
+        // Return general help menu if input isn't a command.
+        if (!command) {
             const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
                     .setLabel('Full Command List')
                     .setStyle('LINK')
-                    .setURL('https://google.com/'),
+                    .setURL('https://tfiws.io'),
             );
 
-                embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [swift.io/support](https://swift.io/support)\n**Invite:** [swift.io/invite](https://swift.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
+                embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [tfiws.io/support](https://tfiws.io/support)\n**Invite:** [tfiws.io/invite](https://tfiws.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
                 embed.addFields(
                     { name: ':stars: Main', value: '`/help`, `/who`, `/played`' },
                     { name: ':game_die: Fun', value: '`/roll`, `/flip`, `/dnd`, `/pvp`, `/duel`' },
@@ -41,14 +43,10 @@ module.exports = {
                     { name: ':shield: Moderation', value: '`/kick`, `/ban`, `/unban`, `/timeout`, `/banlist`, `/role`' },
                     { name: ':gear: Settings', value: '`/automod`' } 
                 )
-                embed.setFooter({text: 'Swift is currently in its early stages of development!\nIf you have any feedback, please join our support server - swift.io/join'});
+                embed.setFooter({text: 'Swift is currently in its early stages of development!\nIf you have any feedback, please join our support server - tfiws.io/join'});
 
             return await interaction.reply({ embeds: [embed], components: [row] });
         }
-
-
-        // Get module.exports from command, match command name with specified <command> string.
-        const command = client.commands.get(`${string}`);
         
         embed.setTitle(`/${command.name}`)
         embed.setDescription(`${command.description}`)
