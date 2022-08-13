@@ -20,6 +20,17 @@ Below is a list of commands for operating Swift.
 | `/reddit` | Retrieves a random post from reddit from a given subreddit. |
 | `/level` | Shows a breakdown of level ranges for Souls games. |
 
+### 🎵 Music
+
+| Command | Description | Permissions |
+| --- | --- | --- |
+| `/play` | Plays a song. The search query can either be in the form of keywords or a url. | 
+| `/pause` | Pauses the current song. |
+| `/resume` | Resumes the current song. |
+| `/stop` | Stops the music player. |
+| `/skip` | Skips the current song. |
+| `/queue` | Displays the song queue. |
+
 ### 🛡️ Moderation
 
 | Command | Description | Permissions |
