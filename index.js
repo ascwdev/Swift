@@ -1,10 +1,11 @@
 // Require the necessary discord.js classes
-const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const fs = require('node:fs');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const { Player } = require('discord-player');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates] });
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
@@ -30,6 +31,14 @@ for (const folder of commandFolders) {
 		client.commands.set(command.data.name, command);
 	}	
 }
+
+client.player = new Player(client, {
+	ytdlOptions: {
+		quality: "highestaudio",
+		highWaterMark: 1 << 25
+	}
+});
+
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
@@ -45,7 +54,7 @@ client.on('interactionCreate', async interaction => {
 	if (!command) return;
 
 	try {
-		await command.execute(interaction);
+		await command.execute({ client, interaction });
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
