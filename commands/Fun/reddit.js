@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, Permissions } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
                     .setName('subreddit')
                     .setDescription('The subreddit to fetch a post from.')
                     .setRequired(true)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         
         const sub = interaction.options.getString(`subreddit`);
             
@@ -40,7 +40,7 @@ module.exports = {
 
             await interaction.deferReply();
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setAuthor({name: `u/${post.author}`, url: `https://reddit.com/user/${post.author}`})
             .setTitle(`${post.title}`)

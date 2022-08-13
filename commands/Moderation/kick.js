@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'kick',
@@ -17,12 +17,12 @@ module.exports = {
             option.setName('reason')
                 .setDescription('The reason for kicking the user.')
                 .setRequired(false)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const user = interaction.options.getUser('user');
         const member = interaction.options.getMember('user');
         const reason = interaction.options.getString('reason');
         
-        if (!interaction.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) {
             return await interaction.reply({ content: 'You do not have permission to kick a user.', ephemeral: true });
         }
 
@@ -30,14 +30,14 @@ module.exports = {
             return await interaction.reply({ content: `You cannot kick ${member.displayName}.`, ephemeral: true });
         }
 
-        if (member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if (member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             return await interaction.reply({ content: `You cannot kick ${member.displayName}.`, ephemeral: true });
         }
 
         member.kick({reason:`${!reason ? "Unspecified" : `${reason}`}`});
             console.log(`${user.username} was banned from ${member.guild.name}.`);
     
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setAuthor({name: `Kicked ${user.tag}`, iconURL: user.avatarURL()})
             .setDescription(`${member.displayName} was kicked.`)

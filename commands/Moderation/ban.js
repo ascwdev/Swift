@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'ban',
@@ -17,12 +17,12 @@ module.exports = {
             option.setName('reason')
                 .setDescription('The reason for banning the user.')
                 .setRequired(false)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const user = interaction.options.getUser('user');
         const member = interaction.options.getMember('user');
         const reason = interaction.options.getString('reason');   
     
-        if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {    
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {    
             return await interaction.reply({ content: 'You do not have permission to ban a user.', ephemeral: true });
         }
 
@@ -34,14 +34,14 @@ module.exports = {
             return await interaction.reply({ content: `You cannot ban ${member.displayName}.`, ephemeral: true });
         }
         
-        if (member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if (member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             return await interaction.reply({ content: `You cannot ban ${member.displayName}.`, ephemeral: true });
         }
 
         member.ban({reason:`${!reason ? "Unspecified" : `${reason}`}`});
         console.log(`${member.displayName} was banned from ${member.guild.name}.`);
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setAuthor({name: `Banned ${user.tag}`, iconURL: user.avatarURL()})
             .setDescription(`${member.displayName} was banned.`)

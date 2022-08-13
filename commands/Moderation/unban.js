@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'unban',
@@ -13,10 +13,10 @@ module.exports = {
             option.setName('user')
                 .setDescription('The user you want to unban.')
                 .setRequired(true)),
-    async execute(interaction) {
+    async execute({ client, interaction }) {
         const user = interaction.options.getUser('user');
 
-        if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {
             return await interaction.reply({ content: 'You do not have permission to unban a user.', ephemeral: true });
 
         }
@@ -36,7 +36,7 @@ module.exports = {
                 await interaction.guild.bans.remove(user);
                 console.log(`${user.username} was unbanned.`);
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor('#5866EF')
                     .setAuthor({name: `Unbanned ${user.tag}`, iconURL: user.avatarURL()})
                     .setDescription(`${user.username} has been unbanned.`)

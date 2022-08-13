@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, strikethrough, memberNicknameMention } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'role',
@@ -46,7 +46,7 @@ module.exports = {
                 .setName('role')
                 .setDescription('The role you want a user to be removed from.')
                 .setRequired(true))),
-    async execute(interaction) {
+    async execute({ interaction }) {
         if (interaction.options.getSubcommand() === 'add') {
             const member = interaction.options.getMember('member');
             const role = interaction.options.getRole('role');
@@ -61,7 +61,7 @@ module.exports = {
 
             member.roles.add(role);
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setDescription(`${member} was added to ${role}.`)
                 .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()})
@@ -78,7 +78,7 @@ module.exports = {
 
             member.roles.remove(role);
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setDescription(`${member} was removed from ${role}.`)
                 .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()})
@@ -88,7 +88,7 @@ module.exports = {
         else if (interaction.options.getSubcommand() === 'info') {
             const role = interaction.options.getRole('role');
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setDescription(`<@&${role.id}> was created <t:${parseInt(role.createdTimestamp / 1000)}:R>`)
                 .setAuthor({ name: 'Inspect Role', iconURL: interaction.guild.iconURL()})

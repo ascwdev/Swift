@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'level',
@@ -13,17 +13,19 @@ module.exports = {
             option 
                 .setName('game')
                 .setDescription('The game you want level range information on.')
-                .addChoice('Dark Souls', 'ds1')
-                .addChoice('Dark Souls III', 'ds3')
-                .addChoice('Bloodborne', 'bb')
-                .addChoice('Elden Ring', 'er')
+                .addChoices(
+                    { name: 'Dark Souls', value: 'ds1'},
+                    { name: 'Dark Souls III', value: 'ds3'},
+                    { name: 'Bloodborne', value: 'bb'},
+                    { name: 'Elden Ring', value: 'er'}
+                )
                 .setRequired(true))
         .addNumberOption(option =>
             option
                 .setName('level')
                 .setDescription('The level you want the range from.')
                 .setRequired(true)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const game = interaction.options.getString('game');        
         const level = interaction.options.getNumber('level');
 
@@ -38,7 +40,7 @@ module.exports = {
             const upperLimitCovenant = Math.ceil(level + (level * 0.1));
             const lowerLimitCovenant = Math.ceil(level - 20 + (level * 0.2));
             
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setAuthor({name: `Level Range (DS1)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **SL${level}**.\nFormulas can be found **[here](http://darksouls.wikidot.com/online-matchmaking)**.`)
@@ -79,7 +81,7 @@ module.exports = {
             const upperLimitBlue = Math.ceil(level * 1.1 + 15);
             const lowerLimitBlue = Math.ceil(level * 0.9 - 15);
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setAuthor({name: `Level Range (DS3)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **SL${level}**.\nFormulas can be found **[here](https://www.reddit.com/r/darksouls3/comments/64iw3i/the_patches_notes_113_date_to_be_defined/?utm_source=share&utm_medium=web2x&context=3)**.`)
@@ -103,7 +105,7 @@ module.exports = {
             const upperLimitBeckoning = Math.ceil(level + (level * 0.1) + 10);
             const lowerLimitBeckoning = Math.ceil(level - (level * 0.1) - 10);
             
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setAuthor({name: `Level Range (BB)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **BL${level}**.\nFormulas can be found **[here](https://bloodborne.fandom.com/wiki/Network_Play)**.`)
@@ -121,7 +123,7 @@ module.exports = {
             const upperLimitRed = Math.ceil(level * 1.1 + 20);
             const lowerLimitRed = Math.ceil(level * 0.9);
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor('#5866EF')
                 .setAuthor({name: `Level Range (ER)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **RL${level}**.\nFormulas can be found **[here](https://www.reddit.com/r/Eldenring/comments/t7620i/unofficial_matchmaking_information/)**.`)

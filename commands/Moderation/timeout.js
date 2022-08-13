@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'timeout',
@@ -21,15 +21,13 @@ module.exports = {
             option.setName('reason')
                 .setDescription('The reason for giving the user a timeout.')
                 .setRequired(false)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const user = interaction.options.getUser('user');
         const member = interaction.options.getMember('user');
         const duration = interaction.options.getNumber('duration');
         const reason = interaction.options.getString('reason');
 
-        const { guild } = interaction;
-
-        if (!interaction.member.permissions.has(Permissions.FLAGS.MUTE_MEMBERS)) {
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.MuteMembers)) {
             return await interaction.reply({ content: 'You do not have permission to give a user a timeout.', ephemeral: true });
         }
 
@@ -37,14 +35,14 @@ module.exports = {
             return await interaction.reply({ content: `You cannot give ${member.displayName} a timeout.`, ephemeral: true });
         }
 
-        if (member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if (member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             return await interaction.reply({ content: `You cannot give ${member.displayName} a timeout.`, ephemeral: true });
         }
 
         member.timeout(duration * 60 * 1000, `${!reason ? "Unspecified" : `${reason}`}`);
             console.log(`${user.username} was given a ${duration} minute timeout in ${member.guild.name}.`);
     
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setAuthor({ name: `Timeout For ${user.tag}`, iconURL: user.avatarURL() })
             .setDescription(`${member.displayName} was given a ${duration} minute timeout.`)

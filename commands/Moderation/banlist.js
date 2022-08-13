@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, Permissions } = require('discord.js');
 const ban = require('./ban');
 
 module.exports = {
@@ -10,8 +10,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('banlist')
         .setDescription('Displays a list of current bans in the server.'),
-    async execute(interaction) {
-        const { client } = interaction;
+    async execute({ client, interaction }) {
 
         await interaction.guild.bans.fetch()
             .then(async bans => {
@@ -23,7 +22,7 @@ module.exports = {
                 let users = bans.map(user => user.user.username).join('\n');
                 let reasons = bans.map(reason => reason.reason).join('\n');
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor('#5866EF')
                     .setAuthor({name: `Ban List`, iconURL: client.user.avatarURL()})
                     .setDescription(`${bans.size} users are banned.`)

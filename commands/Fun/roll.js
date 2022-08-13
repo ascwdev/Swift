@@ -13,7 +13,7 @@ module.exports = {
             option.setName('number')
                 .setDescription('The maximum value you wish for the roll to be between.')
                 .setRequired(true)),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const number = interaction.options.getNumber('number');
         
         const min = Math.ceil(1);
