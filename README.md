@@ -1,13 +1,13 @@
 # Swift
-Swift is a Discord application written in JavaScript.
+Swift is a multi-purpose discord bot designed for niche servers.
 
 ## Foreword
 
-Built off of the back of a similar project I made in Python, Swift offers a similar feature set to that of the former.
+Swift was initially designed as a university project to help me understand JavaScript better. It has since become larger-scope than anticipated, and as such, its been practical to treat this as a professional project. This would mean documenting each step of the process, the use of version control, as well as a manual for users who wish to incorporate Swift into their Discord Servers.
 
-Still very much a work-in-progress at the moment.
+While there still is a long way to go until Swift is production ready, you can still observe progress on the project through this GitHub repository.
 
-Below is a list of commands for operating Swift.
+Additionally, below is a list of commands for operating Swift.
 
 ## Command List
 
