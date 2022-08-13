@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, strikethrough } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'server',
@@ -9,11 +9,11 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('server')
         .setDescription('Replies with Server Info!'),
-    async execute(interaction) {
+    async execute({ interaction }) {
         const { guild } = interaction;
         // const { ownerId } = guild;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setTitle(`${guild.name}`)
             .setAuthor({name: 'Server Info', iconURL: guild.iconURL()})

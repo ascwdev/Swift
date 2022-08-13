@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'stats',
@@ -9,8 +9,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('stats')
         .setDescription("Shows a breakdown of Swift's statistics."),
-    async execute(interaction) {;
-        const { client } = interaction;
+    async execute({ client, interaction }) {;
+        
 
         let totalSeconds = (client.uptime / 1000);
         let hours = Math.floor(totalSeconds / 3600);
@@ -20,7 +20,7 @@ module.exports = {
         let seconds = Math.floor(totalSeconds % 60);
         let uptime = `${hours}H, ${minutes}m, ${seconds}s`;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
         .setColor('#5866EF')
         .setAuthor({name: `Swift Stats`, iconURL: client.user.avatarURL()})
         .addFields(
