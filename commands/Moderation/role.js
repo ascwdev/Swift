@@ -3,8 +3,8 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'role',
-    description: "Inspects a given role. Further commands can be issued to modify a user's role.",
-    usage: '`/role info <role>`\n`/role add <role> [user]`\n`/role remove <role> [user]`',
+    description: "Inspects a given role. Further commands can be issued to modify a member's role.",
+    usage: '`/role info <role>`\n`/role add <role> [member]`\n`/role remove <role> [member]`',
     permissions: '`MANAGE_ROLES`',
     data: new SlashCommandBuilder()
         .setName('role')
@@ -21,30 +21,30 @@ module.exports = {
         .addSubcommand(subcommand =>
 		    subcommand
             .setName('add')
-            .setDescription('Adds a role to a specified user.')
+            .setDescription('Adds a role to a specified member.')
             .addUserOption(option => 
                 option
                 .setName('member')
-                .setDescription('The user you want to add to a role.')
+                .setDescription('The member you want to add to a role.')
                 .setRequired(true))
             .addRoleOption(option => 
                 option
                 .setName('role')
-                .setDescription('The role you want to add to the user to.')
+                .setDescription('The role you want to add to the member to.')
                 .setRequired(true)))
         .addSubcommand(subcommand =>
 		    subcommand
             .setName('remove')
-            .setDescription('Removes a role to a specified user')
+            .setDescription('Removes a role to a specified member')
             .addUserOption(option => 
                 option
                 .setName('member')
-                .setDescription('The user you want to remove from a role.')
+                .setDescription('The member you want to remove from a role.')
                 .setRequired(true))
             .addRoleOption(option => 
                 option
                 .setName('role')
-                .setDescription('The role you want a user to be removed from.')
+                .setDescription('The role you want a member to be removed from.')
                 .setRequired(true))),
     async execute({ interaction }) {
         if (interaction.options.getSubcommand() === 'add') {

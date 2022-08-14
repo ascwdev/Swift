@@ -3,24 +3,24 @@ const { EmbedBuilder, ActivityType } = require('discord.js');
 
 module.exports = {
     name: 'who',
-    description: 'Returns information on the specified user.',
-    usage: '`/who <user>`',
+    description: 'Returns information on the specified member.',
+    usage: '`/who <member>`',
     permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('who')
-        .setDescription('Returns information on a given user.')
+        .setDescription('Returns information on a given member.')
         .addUserOption (option =>
-            option.setName('user')
-                .setDescription('The user you want information on.')
+            option.setName('member')
+                .setDescription('The member you want information on.')
                 .setRequired(true)),
     async execute({ interaction }) {
-        const user = interaction.options.getUser('user');
-        const member = interaction.options.getMember('user');
+        const user = interaction.options.getUser('member');
+        const member = interaction.options.getMember('member');
         let roleList = member.roles.cache.map(r => r).join(' ').replace("@everyone", " ");
 
     // Check if specified user is a guild member. If not, return error.
     if (!member) {
-        return await interaction.reply({ content: "Couldn't find the specified user.", ephemeral: true });
+        return await interaction.reply({ content: "Couldn't find the specified member.", ephemeral: true });
     }
     
     // Check if specified user has any roles. If not, return "None".

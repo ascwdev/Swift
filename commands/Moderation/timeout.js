@@ -3,15 +3,15 @@ const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'timeout',
-    description: 'Gives the specified user a timeout. Additionally a reason can be given.',
+    description: 'Gives the specified member a timeout. Additionally a reason can be given.',
     usage: '`/timeout <reason>`',
     permissions: '`MUTE_MEMBERS`',
     data: new SlashCommandBuilder()
         .setName('timeout')
-        .setDescription('Gives the specified user a timeout.')
+        .setDescription('Gives the specified member a timeout.')
         .addUserOption (option =>
-            option.setName('user')
-                .setDescription('The user you want to timeout.')
+            option.setName('member')
+                .setDescription('The member you want to timeout.')
                 .setRequired(true))
         .addNumberOption (option =>
             option.setName('duration')
@@ -19,16 +19,16 @@ module.exports = {
                 .setRequired(true))
         .addStringOption (option =>
             option.setName('reason')
-                .setDescription('The reason for giving the user a timeout.')
+                .setDescription('The reason for giving the member a timeout.')
                 .setRequired(false)),
     async execute({ interaction }) {
-        const user = interaction.options.getUser('user');
-        const member = interaction.options.getMember('user');
+        const user = interaction.options.getUser('member');
+        const member = interaction.options.getMember('member');
         const duration = interaction.options.getNumber('duration');
         const reason = interaction.options.getString('reason');
 
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.MuteMembers)) {
-            return await interaction.reply({ content: 'You do not have permission to give a user a timeout.', ephemeral: true });
+            return await interaction.reply({ content: 'You do not have permission to give a member a timeout.', ephemeral: true });
         }
 
         if (member.user.bot) {
