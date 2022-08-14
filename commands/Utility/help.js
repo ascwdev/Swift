@@ -40,7 +40,7 @@ module.exports = {
                     { name: ':musical_note: Music', value: '`/play`, `/pause`, `/resume`, `/stop`, `/skip`, `/queue`' },
                     { name: ':tools: Utility', value: '`/server`, `/help`, `/who`' },
                     { name: ':shield: Moderation', value: '`/kick`, `/ban`, `/unban`, `/timeout`, `/banlist`, `/role`' },
-                    { name: ':gear: Settings', value: '`/automod`' } 
+                    { name: ':gear: Settings', value: '` `' } 
                 )
                 embed.setFooter({text: 'Swift is currently in its early stages of development!\nIf you have any feedback, please join our support server - tfiws.io/join'});
 
