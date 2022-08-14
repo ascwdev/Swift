@@ -17,7 +17,7 @@ module.exports = {
         }
 
         const queueString = queue.tracks.slice(0, 10).map((song, i) => {
-            return `${i + 1}) \`[${song.duration}]\` **[${song.title}](${song.url})**`;
+            return `${i + 1}) **[${song.title}](${song.url})** \`[${song.duration}]\``;
         }).join("\n");
 
         // Get the current song
@@ -28,7 +28,7 @@ module.exports = {
                 new EmbedBuilder()
                     .setColor('#5866EF')
                     .setAuthor({name: 'Song Queue', iconURL: client.user.avatarURL()})
-                    .setDescription(`**Currently Playing**\n` + (currentSong ? `\`[${currentSong.duration}]\` **[${currentSong.title}](${currentSong.url})**` : "None") +`\n\n**Queue**\n${queueString}`)
+                    .setDescription(`**Currently Playing**\n` + (currentSong ? `**[${currentSong.title}](${currentSong.url})** \`[${currentSong.duration}]\`` : "None") +`\n\n**Queue**\n${queueString}`)
                     .setThumbnail(currentSong.setThumbnail)
             ]
         });
