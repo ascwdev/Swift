@@ -34,7 +34,7 @@ module.exports = {
                     .setURL('https://github.com/ascwnyc/Swift#readme'),
             );
 
-                embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [tfiws.io/support](https://tfiws.io/support)\n**Invite:** [tfiws.io/invite](https://tfiws.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
+                embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [<placeholder>](https://tfiws.io/support)\n**Invite:** [<placeholder>](https://tfiws.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
                 embed.addFields(
                     { name: ':game_die: Fun', value: '`/roll`, `/flip`, `/dnd`, `/pvp`, `/duel`' },
                     { name: ':musical_note: Music', value: '`/play`, `/pause`, `/resume`, `/stop`, `/skip`, `/queue`' },
