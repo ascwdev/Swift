@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'roll',
@@ -22,7 +22,7 @@ module.exports = {
         
         const wait = require('node:timers/promises').setTimeout;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('#5866EF')
             .setAuthor({name: `Dice Roll`, iconURL: `https://i.imgur.com/39fsK14.png`})
             .setDescription(`${interaction.member.displayName} rolls the **d${max}**.`);
