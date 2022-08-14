@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, ActivityType } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     description: 'Returns information on the specified member.',
