@@ -5,7 +5,7 @@ module.exports = {
     name: 'role',
     description: "Inspects a given role. Further commands can be issued to modify a member's role.",
     usage: '`/role info <role>`\n`/role add <role> [member]`\n`/role remove <role> [member]`',
-    permissions: '`MANAGE_ROLES`',
+    permissions: '`ManageRoles`',
     data: new SlashCommandBuilder()
         .setName('role')
         .setDescription("Allows users to moderate guild roles and inspect individual roles.")

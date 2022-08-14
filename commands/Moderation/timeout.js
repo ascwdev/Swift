@@ -5,7 +5,7 @@ module.exports = {
     name: 'timeout',
     description: 'Gives the specified member a timeout. Additionally a reason can be given.',
     usage: '`/timeout <reason>`',
-    permissions: '`MUTE_MEMBERS`',
+    permissions: '`MuteMembers`',
     data: new SlashCommandBuilder()
         .setName('timeout')
         .setDescription('Gives the specified member a timeout.')

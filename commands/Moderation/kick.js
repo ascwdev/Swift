@@ -5,7 +5,7 @@ module.exports = {
     name: 'kick',
     description: 'Kicks a specified member. Additionally, a reason can be specified.',
     usage: '`/kick <member> [reason]`',
-    permissions: '`KICK_MEMBERS`',
+    permissions: '`KickMembers`',
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Boots a member from the server.')

@@ -6,7 +6,7 @@ module.exports = {
     name: 'banlist',
     description: 'Displays a list of current bans in the server.',
     usage: '`/banlist`',
-    permissions: '`BAN_MEMBERS`',
+    permissions: '`BanMembers`',
     data: new SlashCommandBuilder()
         .setName('banlist')
         .setDescription('Displays a list of current bans in the server.'),

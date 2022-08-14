@@ -5,7 +5,7 @@ module.exports = {
     name: 'unban',
     description: 'Unbans a specified user from the current server.',
     usage: '`/unban <user>`',
-    permissions: '`BAN_MEMBERS`',
+    permissions: '`BanMembers`',
     data: new SlashCommandBuilder()
         .setName('unban')
         .setDescription('Unbans a user from the server.')
@@ -13,7 +13,7 @@ module.exports = {
             option.setName('user')
                 .setDescription('The user you want to unban.')
                 .setRequired(true)),
-    async execute({ client, interaction }) {
+    async execute({ interaction }) {
         const user = interaction.options.getUser('user');
 
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {
