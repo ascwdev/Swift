@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, ActivityType } = require('discord.js');
 
 module.exports = {
     name: 'who',
@@ -37,8 +37,29 @@ module.exports = {
             // { name: 'Status', value: `${activity.name}`},
             { name: 'Joined', value: `<t:${parseInt(member.joinedTimestamp / 1000)}:R>`, inline: true},
             { name: 'Registered', value: `<t:${parseInt(user.createdTimestamp / 1000)}:R>`, inline: true},
-            { name: ':shield: Roles', value: `${roleList}` }
+            { name: `:shield: Roles (${member.roles.cache.size - 1})`, value: `${roleList}` }
         );
+        
+        
+        // Check if a member has a status. If not, return "None".
+        if (!member.presence?.activities || member.presence.activities.length === 0) {
+            embed.addFields({ name: 'Status', value: 'None'});
+        }
+        else {
+            const activity = member.presence.activities[0];
+            
+            // Create an array to translate enums into strings.
+            const status = {
+                0: 'Playing',
+                1: 'Streaming',
+                2: 'Listening',
+                3: 'Watching',
+                4: '',
+                5: 'Competing'
+            }
+
+            embed.addFields({ name: 'Status', value: `${status[activity.type]} ${activity.name}` });
+        }
 
         await interaction.reply({ embeds: [embed] });
     },
