@@ -35,11 +35,11 @@ module.exports = {
 
                 embed.setDescription("I'm a multi-purpose discord bot designed for niche servers.\nHeres a list of commands.\n\nUse `/help <command>` for extended information on a command.\n\n**Support:** [<placeholder>](https://tfiws.io/support)\n**Invite:** [<placeholder>](https://tfiws.io/invite)\n\nFor a full list of commands, follow the **link** at the bottom.")
                 embed.addFields(
-                    { name: ':game_die: Fun', value: '`/roll`, `/flip`, `/dnd`, `/pvp`, `/duel`' },
+                    { name: ':game_die: Fun', value: '`/roll`, `/flip`, `/dadjoke`' },
                     { name: ':musical_note: Music', value: '`/play`, `/pause`, `/resume`, `/stop`, `/skip`, `/queue`' },
-                    { name: ':tools: Utility', value: '`/server`, `/help`, `/who`' },
+                    { name: ':tools: Utility', value: '`/server`, `/help`, `/who`, `/git`' },
                     { name: ':shield: Moderation', value: '`/kick`, `/ban`, `/unban`, `/timeout`, `/banlist`, `/role`' },
-                    { name: ':gear: Settings', value: '` `' } 
+                    { name: ':gear: Settings', value: '`/automod`' } 
                 )
                 embed.setFooter({text: 'Swift is currently in its early stages of development!\nIf you have any feedback, please join our support server - tfiws.io/join'});
 
