@@ -16,7 +16,7 @@ module.exports = {
             .then(async bans => {
                 
                 if (bans.size == 0) {
-                    return await interaction.reply({ content: 'The ban list is currently empty.', ephemeral: true});
+                    return await interaction.reply({ content: 'The ban list is currently empty. Use the `/help` command for more information on how to use this command.', ephemeral: true});
                 }
 
                 let users = bans.map(user => user.user.username).join('\n');
