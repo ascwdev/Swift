@@ -41,7 +41,7 @@ Additionally, below is a list of commands for operating Swift.
 | `/unban` | Unbans a previously banned user. | `BanMembers` |
 | `/banlist` | Shows a list of banned users. | `BanMembers` |
 | `/kick` | Kicks a member. | `KickUser` |
-| `/timeout | Times a member out for a specified duration (in minutes). | `MuteMembers` |
+| `/timeout` | Times a member out for a specified duration (in minutes). | `MuteMembers` |
 
 ### 🛠️ Utility
 
