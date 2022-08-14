@@ -17,6 +17,8 @@ module.exports = {
                 .setRequired(true)
         ),
     async execute({ client, interaction }) {
+        await interaction.deferReply();
+        
         if (!interaction.member.voice.channel) {
             return await interaction.reply({ content: 'You must be in a voice channel to use this command.', ephemeral: true });
         }
@@ -56,6 +58,6 @@ module.exports = {
             await queue.play();
         }
 
-        return await interaction.reply({ embeds: [embed] });
+        return await interaction.editReply({ embeds: [embed] });
     },
 }
