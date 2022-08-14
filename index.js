@@ -5,7 +5,7 @@ const { token } = require('./config.json');
 const { Player } = require('discord-player');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates] });
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
