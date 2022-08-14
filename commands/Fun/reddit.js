@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, Permissions } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
@@ -16,9 +16,11 @@ module.exports = {
                     .setDescription('The subreddit to fetch a post from.')
                     .setRequired(true)),
     async execute({ interaction }) {
-        
         const sub = interaction.options.getString(`subreddit`);
-            
+
+        // Initially defer the reply to give Swift a chance to fetch and respond.
+        await interaction.deferReply();
+
         try {
             
             // Fetch post from user-defined subreddit. Solely numeric subreddits (e.g: '196') instead point to the count function and therefore don't work as intended.
@@ -37,8 +39,6 @@ module.exports = {
             if(post.nsfw && !interaction.channel.nsfw) {
                 return await interaction.reply({ content: `Due to the adult content of this post, it can only be posted to Age-Restricted Channels.\n*(Age Restriction can be applied in the* ***channel settings*** *tab)*.`, ephemeral: true })
             }
-
-            await interaction.deferReply();
 
             const embed = new EmbedBuilder()
             .setColor('#5866EF')
