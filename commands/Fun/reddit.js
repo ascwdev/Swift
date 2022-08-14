@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: 'reddit',
     description: 'Fetches a random post from a given subreddit.',
     usage: '`/reddit <subreddit>`',
     permissions: '`none`',

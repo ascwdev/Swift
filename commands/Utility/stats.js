@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: 'stats',
     description: 'Retrieves statistics about Swift.',
     usage: '`/stats`',
     permissions: 'none',

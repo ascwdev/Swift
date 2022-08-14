@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'roll',
     description: 'Rolls for a random number between 1 and a specified maximum.',
     usage: '`/roll <number>`',
     permissions: '`none`',

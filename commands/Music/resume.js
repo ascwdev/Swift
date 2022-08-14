@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'resume',
     description: 'Pauses a song.',
     usage: '`/resume`',
     permissions: 'none',

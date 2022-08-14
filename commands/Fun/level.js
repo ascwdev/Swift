@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'level',
     description: 'Displays level information for Souls games.',
     usage: '`/level <game> [level]`',
     permissions: '`none`',

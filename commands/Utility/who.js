@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder, ActivityType } = require('discord.js');
 
 module.exports = {
-    name: 'who',
     description: 'Returns information on the specified member.',
     usage: '`/who <member>`',
     permissions: 'none',

@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require('discord-player');
 
 module.exports = {
-    name: 'play',
     description: 'Plays a song. The search query can either be in the form of keywords or a url.',
     usage: '`/play <song>`',
     permissions: 'none',

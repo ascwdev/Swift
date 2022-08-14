@@ -3,7 +3,6 @@ const { EmbedBuilder, Permissions } = require('discord.js');
 const ban = require('./ban');
 
 module.exports = {
-    name: 'banlist',
     description: 'Displays a list of current bans in the server.',
     usage: '`/banlist`',
     permissions: '`BanMembers`',

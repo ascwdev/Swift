@@ -3,7 +3,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder, Permissions } = require('discord.js');
 
 module.exports = {
-    name: 'help',
     description: 'Displays a help command.',
     usage: '`/help`\n`/help <command>`',
     permissions: '`none`',
@@ -47,7 +46,7 @@ module.exports = {
             return await interaction.reply({ embeds: [embed], components: [row] });
         }
         
-        embed.setTitle(`/${command.name}`)
+        embed.setTitle(`/${command.data.name}`)
         embed.setDescription(`${command.description}`)
         embed.setFields( 
             { name: 'Usage', value: `${command.usage}`, inline: true},

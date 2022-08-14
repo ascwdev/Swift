@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    name: 'timeout',
     description: 'Gives the specified member a timeout. Additionally a reason can be given.',
     usage: '`/timeout <reason>`',
     permissions: '`MuteMembers`',

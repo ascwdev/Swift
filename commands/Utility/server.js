@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'server',
     description: 'Returns a report of relevant server information.',
     usage: '`/server`',
     permissions: 'none',
