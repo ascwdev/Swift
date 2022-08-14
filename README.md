@@ -17,6 +17,7 @@ Additionally, below is a list of commands for operating Swift.
 | --- | --- | --- |
 | `/flip` | Flips a coin. | 
 | `/roll` | Rolls a dice. |
+| `/dadjoke` | Tells a dad joke. They're all terrible. |
 | `/reddit` | Retrieves a random post from reddit from a given subreddit. |
 | `/level` | Shows a breakdown of level ranges for Souls games. |
 
@@ -35,11 +36,12 @@ Additionally, below is a list of commands for operating Swift.
 
 | Command | Description | Permissions |
 | --- | --- | --- |
-| `/role` | Shows role info. | `MANAGE_ROLES` |
-| `/ban` | Bans a user. | `BAN_MEMBERS` |
-| `/unban` | Unbans a user. | `BAN_MEMBERS` |
-| `/banlist` | Shows a list of banned users. | `BAN_MEMBERS` |
-| `/kick` | Kicks a user. | `KICK_USER` |
+| `/role` | Shows role info. Can also be used to assign/revoke roles. | `ManageRoles` |
+| `/ban` | Bans a member. | `BanMembers` |
+| `/unban` | Unbans a previously banned user. | `BanMembers` |
+| `/banlist` | Shows a list of banned users. | `BanMembers` |
+| `/kick` | Kicks a member. | `KickUser` |
+| `/timeout | Times a member out for a specified duration (in minutes). | `MuteMembers` |
 
 ### 🛠️ Utility
 
@@ -48,3 +50,4 @@ Additionally, below is a list of commands for operating Swift.
 | `/server` | Shows server info. |
 | `/stats` | Shows a breakdown of Swift's statistics. |
 | `/who` | Gets info on a user. |
+| `/git` | Gets info on a GitHub user/repository. |
