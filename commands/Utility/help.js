@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder, Permissions } = require('discord.js');
+const { ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     description: 'Displays a help command.',
@@ -52,7 +52,6 @@ module.exports = {
             { name: 'Usage', value: `${command.usage}`, inline: true},
             { name: 'Permissions', value: `${command.permissions}`, inline: true}
         );
-
         await interaction.reply({ embeds: [embed] });
     },
 };
