@@ -14,7 +14,7 @@ module.exports = {
         await interaction.guild.bans.fetch()
             .then(async bans => {
                 
-                if (bans.size == 0) {
+                if (bans.size === 0) {
                     return await interaction.reply({ content: 'The ban list is currently empty. Use the `/help` command for more information on how to use this command.', ephemeral: true});
                 }
 
