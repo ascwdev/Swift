@@ -16,8 +16,9 @@ module.exports = {
                 .setRequired(true)
         ),
     async execute({ client, interaction }) {
-        await interaction.deferReply();
-        
+
+            // await interaction.deferReply();
+
         if (!interaction.member.voice.channel) {
             return await interaction.reply({ content: 'You must be in a voice channel to use this command.', ephemeral: true });
         }
@@ -27,12 +28,6 @@ module.exports = {
         if (!queue.connection) {
             await queue.connect(interaction.member.voice.channel);
         }
-
-        let embed = new EmbedBuilder();
-
-        embed
-            .setColor('#5866EF')
-            .setAuthor({name: 'Song Added', iconURL: client.user.avatarURL()});
 
         let query = interaction.options.getString('song');
 
@@ -48,7 +43,11 @@ module.exports = {
         const song = result.tracks[0];
         await queue.addTrack(song);
 
+        let embed = new EmbedBuilder();
+
         embed
+            .setColor('#5866EF')
+            .setAuthor({name: 'Song Added', iconURL: client.user.avatarURL()})
             .setDescription(`Added **[${song.title}](${song.url})** to the queue.`)
             .setThumbnail(song.thumbnail)
             .setFooter({ text: `Duration: ${song.duration}` });
@@ -57,6 +56,6 @@ module.exports = {
             await queue.play();
         }
 
-        return await interaction.editReply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 }

@@ -43,16 +43,19 @@ module.exports = {
             const response = await fetch(`https://api.github.com/users/${user}`);
             const data = await response.json();
 
+            // If data.message is present, return an error.
             if (data.message) {
                 return await interaction.reply({ content: 'The specified GitHub user could not be found.', ephemeral: true });
             }
 
             await interaction.deferReply();
 
+            // Check if website url contains 'https://'. If not, append 'https://'.
             if (!/^https?:\/\//i.test(data.blog)) {
                 data.blog = 'https://' + data.blog;
             }
 
+            // Rough attempt. Sets up individual links, while 'let links' checks for nulls.
             let twitter = `• [Twitter](https://twitter.com/${data.twitter_username})`;
             let blog = `• [Website](${data.blog})`;
             let repos = `• [Repositories](${data.repos_url})`;
@@ -63,10 +66,12 @@ module.exports = {
             embed
                 .setAuthor({name: `${data.login}`, iconURL: data.avatar_url});    
 
+            // If user has a bio, add About field.
             if (data.bio) {
                 embed.addFields({ name: `:question: About`, value: `${data.bio}`});
             }
 
+            // If user has a location, add Location field.
             if (data.location) {
                 embed.addFields({ name: `:globe_with_meridians: Location`, value: `${data.location}`, inline: true});
             }        
@@ -78,7 +83,7 @@ module.exports = {
             embed
                 .addFields(
 
-                    { name: `:link: Links`, value: `${links}`, inline: true},
+                    { name: `:link: Links`, value: `${links}`, inline: false},
                 );
 
             embed
@@ -89,7 +94,18 @@ module.exports = {
 
         }
         else if (interaction.options.getSubcommand() === 'repo') {
+            const response = await fetch(`https://api.github.com/repos/${user}/${repo}`);
+            const data = await response.json();
 
+            embed
+                .setAuthor({name: `${data.name}`})
+                .addFields(
+                    { name: `:question: About`, value: `${data.description}` },
+                    { name: `Created At`, value: `<t:${Math.floor(new Date(data.created_at).getTime() / 1000)}:R>`, inline: true },
+                    { name: `Last Updated`, value: `<t:${Math.floor(new Date(data.pushed_at).getTime() / 1000)}:R>`, inline: true },
+                );
+
+            return await interaction.reply({ embeds: [embed] });
         }
     },
 };

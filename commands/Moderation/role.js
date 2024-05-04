@@ -8,40 +8,34 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('role')
         .setDescription("Allows users to moderate guild roles and inspect individual roles.")
-        .addSubcommand(subcommand =>
-            subcommand
+        .addSubcommand(subcommand => subcommand
             .setName('info')
             .setDescription('Retrieves information on the specified role.')
-            .addRoleOption (option =>
-                option
+            .addRoleOption (option => option
                 .setName('role')
                 .setDescription('The role you want information on.')
                 .setRequired(true)))
-        .addSubcommand(subcommand =>
-		    subcommand
+
+        .addSubcommand(subcommand => subcommand
             .setName('add')
             .setDescription('Adds a role to a specified member.')
-            .addUserOption(option => 
-                option
+            .addUserOption(option => option
                 .setName('member')
                 .setDescription('The member you want to add to a role.')
                 .setRequired(true))
-            .addRoleOption(option => 
-                option
+            .addRoleOption(option => option
                 .setName('role')
                 .setDescription('The role you want to add to the member to.')
                 .setRequired(true)))
-        .addSubcommand(subcommand =>
-		    subcommand
+
+        .addSubcommand(subcommand => subcommand
             .setName('remove')
             .setDescription('Removes a role to a specified member')
-            .addUserOption(option => 
-                option
+            .addUserOption(option => option
                 .setName('member')
                 .setDescription('The member you want to remove from a role.')
                 .setRequired(true))
-            .addRoleOption(option => 
-                option
+            .addRoleOption(option => option
                 .setName('role')
                 .setDescription('The role you want a member to be removed from.')
                 .setRequired(true))),

@@ -29,7 +29,6 @@ module.exports = {
         const level = interaction.options.getNumber('level');
 
         if (game === 'ds1') {
-
             const upperLimitInvader = Math.ceil(level + 20 + (level * 0.1));
             const lowerLimitInvader = Math.ceil(level - (level * 0.1));
 
@@ -38,24 +37,22 @@ module.exports = {
 
             const upperLimitCovenant = Math.ceil(level + (level * 0.1));
             const lowerLimitCovenant = Math.ceil(level - 20 + (level * 0.2));
-            
+
             const embed = new EmbedBuilder()
                 .setColor('#5866EF')
-                .setAuthor({name: `Level Range (DS1)`, iconURL: interaction.user.avatarURL()})
+                .setAuthor({name: `Level Range Calculator`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **SL${level}**.\nFormulas can be found **[here](http://darksouls.wikidot.com/online-matchmaking)**.`)
                 .addFields (
-                    { name: `<:red_eye:960913350550749195> Invader`, value: `Level ${lowerLimitInvader} - ${upperLimitInvader}`, inline: true},
-                    { name: '<:cat_covenant:960967432145612860> Covenant', value: `Level ${lowerLimitCovenant} - ${upperLimitCovenant}`, inline: true},
-                    { name: '<:white_soapstone:960916417052540978> Co-Op', value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
+                    { name: `<:red_eye:1015554841780703252> Invader`, value: `Level ${lowerLimitInvader} - ${upperLimitInvader}`, inline: true},
+                    { name: '<:cat_covenant:1015555253178990602> Covenant', value: `Level ${lowerLimitCovenant} - ${upperLimitCovenant}`, inline: true},
+                    { name: '<:white_soapstone:1015558078755786753> Co-Op', value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
                 )
                 .setFooter({text: '(Blue Spirits share the same range formula as other invaders in DS1).'})
-            
-                
+
             return await interaction.reply({ embeds: [embed] });
 
         } 
         else if (game === 'ds3') {
-
             if (level >= 351) {
                 return await interaction.reply({ content: `Level **${level}** is out of range. \n\n*"As of Regulation 1.35 the Upper Limit is removed if you're Soul Level 351 or above - but without a password you will not be able to do matchmaking with anyone below Soul Level 351."*`, ephemeral: true})
             }
@@ -85,11 +82,11 @@ module.exports = {
                 .setAuthor({name: `Level Range (DS3)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **SL${level}**.\nFormulas can be found **[here](https://www.reddit.com/r/darksouls3/comments/64iw3i/the_patches_notes_113_date_to_be_defined/?utm_source=share&utm_medium=web2x&context=3)**.`)
                 .addFields (
-                    { name: `<:red_eye:960913350550749195> Dark Spirit`, value: `Level ${lowerLimitRed} - ${upperLimitRed}`, inline: true},
-                    { name: '<:mound_maker:960913350722740275> Mad Phantom', value: `Level ${lowerLimitPurple} - ${upperLimitPurple}`, inline: true },
-                    { name: '<:aldrich_faithful:960915676036493362> Covenant', value: `Level ${lowerLimitCovenant} - ${upperLimitCovenant}`},
-                    { name: '<:white_soapstone:960916417052540978> Co-Op', value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
-                    { name: '<:blue_eye:960917040691040277> Blue Spirit', value: `Level ${lowerLimitBlue} - ${upperLimitBlue}`, inline: true },
+                    { name: `<:red_eye:1015558228962193468> Dark Spirit`, value: `Level ${lowerLimitRed} - ${upperLimitRed}`, inline: true},
+                    { name: '<:mound_maker:1015558345966501918> Mad Phantom', value: `Level ${lowerLimitPurple} - ${upperLimitPurple}`, inline: true },
+                    { name: '<:aldrich_faithful:1015558228962193468> Covenant', value: `Level ${lowerLimitCovenant} - ${upperLimitCovenant}`},
+                    { name: '<:white_soapstone:1015558804533936150> Co-Op', value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
+                    { name: '<:blue_eye:1015558345966501918> Blue Spirit', value: `Level ${lowerLimitBlue} - ${upperLimitBlue}`, inline: true },
                 )
                 
             return await interaction.reply({ embeds: [embed] });
@@ -109,8 +106,8 @@ module.exports = {
                 .setAuthor({name: `Level Range (BB)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **BL${level}**.\nFormulas can be found **[here](https://bloodborne.fandom.com/wiki/Network_Play)**.`)
                 .addFields (
-                    { name: `<:sinister_bell:961051846372364308> Sinister Bell`, value: `Level ${lowerLimitSinister} - ${upperLimitSinister}`, inline: true},
-                    { name: '<:beckoning_bell:961051846800203786> Beckoning Bell', value: `Level ${lowerLimitBeckoning} - ${upperLimitBeckoning}`, inline: true },
+                    { name: `<:sinister_bell:1015558228962193468> Sinister Bell`, value: `Level ${lowerLimitSinister} - ${upperLimitSinister}`, inline: true},
+                    { name: '<:beckoning_bell:1015558228962193468> Beckoning Bell', value: `Level ${lowerLimitBeckoning} - ${upperLimitBeckoning}`, inline: true },
                 )
                 
             return await interaction.reply({ embeds: [embed] });
@@ -127,8 +124,8 @@ module.exports = {
                 .setAuthor({name: `Level Range (ER)`, iconURL: interaction.user.avatarURL()})
                 .setDescription(`Level ranges for a character at **RL${level}**.\nFormulas can be found **[here](https://www.reddit.com/r/Eldenring/comments/t7620i/unofficial_matchmaking_information/)**.`)
                 .addFields (
-                    { name: `<:furled_finger:964181954499076177> Co-Op`, value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
-                    { name: '<:recusant_finger:964181954822041630> Invader', value: `Level ${lowerLimitRed} - ${upperLimitRed}`, inline: true },
+                    { name: `<:furled_finger:1015558345966501918> Co-Op`, value: `Level ${lowerLimitCoop} - ${upperLimitCoop}`, inline: true},
+                    { name: '<:recusant_finger:1015558345966501918> Invader', value: `Level ${lowerLimitRed} - ${upperLimitRed}`, inline: true },
                 )
             
             return await interaction.reply({ embeds: [embed] });
