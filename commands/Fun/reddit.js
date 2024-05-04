@@ -20,7 +20,7 @@ module.exports = {
         try {
             
             // Fetch post from user-defined subreddit. Solely numeric subreddits (e.g: '196') instead point to the count function and therefore don't work as intended.
-            let post = await fetch(`http://meme-api.com/gimme/${sub}`).then(res =>
+            let post = await fetch(`https://meme-api.com/gimme/${sub}`).then(res =>
             res.json());
             
 
