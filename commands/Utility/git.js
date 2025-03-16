@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    description: 'Allows members to page information from [GitHub](https://github.com/).',
     usage: '`/git who <user>`\n`/git repo <user> <repository>`',
     permissions: '`none`',
     data: new SlashCommandBuilder()

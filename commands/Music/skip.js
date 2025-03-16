@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Skips the current song.',
     usage: '`/skip`',
     permissions: 'none',
     data: new SlashCommandBuilder()

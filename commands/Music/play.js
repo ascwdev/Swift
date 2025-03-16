@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require('discord-player');
 
 module.exports = {
-    description: 'Plays a song. The search query can either be in the form of keywords or a url.',
     usage: '`/play <song>`',
     permissions: 'none',
     data: new SlashCommandBuilder()
@@ -47,10 +46,14 @@ module.exports = {
 
         embed
             .setColor('#5866EF')
+            .setTitle(`${song.title}`)
+            .setURL(`${song.url}`)
             .setAuthor({name: 'Song Added', iconURL: client.user.avatarURL()})
-            .setDescription(`Added **[${song.title}](${song.url})** to the queue.`)
+            .setDescription(`Song added to the queue.`)
             .setThumbnail(song.thumbnail)
-            .setFooter({ text: `Duration: ${song.duration}` });
+            .setFields(
+                { name: 'Duration', value: `${song.duration}`}
+                );
 
         if (!queue.playing) {
             await queue.play();

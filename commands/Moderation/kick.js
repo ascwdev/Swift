@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    description: 'Kicks a specified member. Additionally, a reason can be specified.',
     usage: '`/kick <member> [reason]`',
     permissions: '`KickMembers`',
     data: new SlashCommandBuilder()

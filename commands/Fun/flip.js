@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Flips a coin.',
     usage: '`/flip`',
     permissions: '`none`',
     data: new SlashCommandBuilder()

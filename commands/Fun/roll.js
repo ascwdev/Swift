@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Rolls for a random number between 1 and a specified maximum.',
     usage: '`/roll <number>`',
     permissions: '`none`',
     data: new SlashCommandBuilder()
@@ -29,7 +28,7 @@ module.exports = {
 
         await interaction.reply({ embeds: [embed] });
         await wait(2000);
-        embed.setDescription(`${interaction.member.displayName} rolled **${total}**.`);
+        embed.setDescription(`${interaction.member.displayName} rolled a **${total}**.`);
 		await interaction.followUp({ embeds: [embed] });                     
     },
 }

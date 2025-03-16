@@ -3,7 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    description: 'Retrieves statistics about Swift.',
     usage: '`/stats`',
     permissions: 'none',
     data: new SlashCommandBuilder()
@@ -26,7 +25,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
         .setColor('#5866EF')
-        .setAuthor({name: `Swift Stats`, iconURL: client.user.avatarURL()})
+        .setAuthor({name: `Statistics`, iconURL: client.user.avatarURL()})
         .addFields(
             { name: ':desktop: Servers', value: `\`\`\`${client.guilds.cache.size}\`\`\`` , inline: true},
             { name: ':hourglass: Uptime', value: `\`\`\`${uptime}\`\`\`` , inline: true},

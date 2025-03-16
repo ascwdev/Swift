@@ -3,16 +3,15 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Displays a help command.',
     usage: '`/help`\n`/help <command>`',
     permissions: '`none`',
     data: new SlashCommandBuilder()
         .setName('help')
-        .setDescription('Swift will display the help menu. Follow /help with a command to get more info on it.')
+        .setDescription('Displays a help command.')
         .addStringOption(option =>
             option.setName('command')
                 .setDescription('Specify a command for more information on it.')
-                .setRequired(false)),       
+                .setRequired(false)),
     async execute({ client, interaction }) {
         const string = interaction.options.getString('command');
 
@@ -21,7 +20,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
         .setColor('#5866EF')
-        .setAuthor({name: 'Swift Help', iconURL: client.user.avatarURL()})
+        .setAuthor({name: 'Help', iconURL: client.user.avatarURL()})
 
         // Return general help menu if input isn't a command.
         if (!command) {
@@ -47,9 +46,9 @@ module.exports = {
         }
         
         embed.setTitle(`/${command.data.name}`)
-        embed.setDescription(`${command.description}`)
+        embed.setDescription(`${command.data.description}`)
         embed.setFields( 
-            { name: 'Usage', value: `${command.usage}`, inline: true},
+            { name: 'Usage', value: `/${command.usage}`, inline: true},
             { name: 'Permissions', value: `${command.permissions}`, inline: true}
         );
         await interaction.reply({ embeds: [embed] });

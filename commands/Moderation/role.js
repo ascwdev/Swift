@@ -2,7 +2,6 @@ const { SlashCommandBuilder, strikethrough, memberNicknameMention } = require('@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: "Inspects a given role. Further commands can be issued to modify a member's role.",
     usage: '`/role info <role>`\n`/role add <role> [member]`\n`/role remove <role> [member]`',
     permissions: '`ManageRoles`',
     data: new SlashCommandBuilder()

@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    description: 'Bans a specified member. Additionally, a reason can be specified as well as a ban duration (in days).',
     usage: '`/ban`',
     permissions: '`BanMembers`',
     data: new SlashCommandBuilder()

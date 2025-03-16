@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Stops the music player.',
     usage: '`/stop`',
     permissions: 'none',
     data: new SlashCommandBuilder()

@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-    description: 'Unbans a specified user from the current server.',
     usage: '`/unban <user>`',
     permissions: '`BanMembers`',
     data: new SlashCommandBuilder()

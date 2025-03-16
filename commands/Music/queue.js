@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Displays the song queue.',
     usage: '`/queue`',
     permissions: 'none',
     data: new SlashCommandBuilder()

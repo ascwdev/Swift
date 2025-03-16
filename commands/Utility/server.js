@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    description: 'Returns a report of relevant server information.',
     usage: '`/server`',
     permissions: 'none',
     data: new SlashCommandBuilder()
@@ -16,10 +15,10 @@ module.exports = {
             .setColor('#5866EF')
             .setTitle(`${guild.name}`)
             .setAuthor({name: 'Server Info', iconURL: guild.iconURL()})
-            .setDescription('A multi-purpose bot designed for niche servers! Invite Swift today: [swift.io/invite](https://swift.io/invite)') // .setDescription(`${guild.description}`)
-            .setThumbnail( guild.iconURL() ) 
+            .setDescription(guild.description) // .setDescription(`${guild.description}`)
+            .setThumbnail(guild.iconURL())
             .setFooter({text: `ID: ${guild.id}`})
-            .setImage( 'https://i.imgur.com/XpjK8bx.png' ) // guild.bannerURL()
+            .setImage(guild.bannerURL())
             .addFields(
                 { name: 'Guild Master', value: `<@${guild.ownerId}>`, inline: true },
                 { name: 'Created', value: `<t:${parseInt(guild.createdTimestamp / 1000)}:R>`, inline: true},
