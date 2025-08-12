@@ -3,8 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require('discord-player');
 
 module.exports = {
-    usage: '`/play <song>`',
-    permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('play')
         .setDescription('Plays a song.')

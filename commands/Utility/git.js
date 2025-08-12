@@ -3,8 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    usage: '`/git who <user>`\n`/git repo <user> <repository>`',
-    permissions: '`none`',
     data: new SlashCommandBuilder()
         .setName(`git`)
         .setDescription('Allows members to page information from GitHub.')
@@ -31,7 +29,7 @@ module.exports = {
                     .setName('repository')
                     .setDescription('The name of the repository you want info on.')
                     .setRequired(true))),
-    async execute({ client, interaction }) {
+    async execute({ interaction }) {
         const user = interaction.options.getString('user');
         const repo = interaction.options.getString('repository');
 
@@ -60,7 +58,7 @@ module.exports = {
             let repos = `• [Repositories](${data.repos_url})`;
             let profile = `• [Profile](${data.html_url})`;
 
-            let links = `${!data.twitter_username ? `` : `${twitter}`}\n${!data.blog || data.blog == 'https://' ? `` : `${blog}`}\n${!data.repos_url ? `` : `${repos}`}\n${!data.html_url ? `` : `${profile}`}`;
+            let links = `${!data.twitter_username ? `` : `${twitter}`}\n${!data.blog || data.blog === 'https://' ? `` : `${blog}`}\n${!data.repos_url ? `` : `${repos}`}\n${!data.html_url ? `` : `${profile}`}`;
 
             embed
                 .setAuthor({name: `${data.login}`, iconURL: data.avatar_url});    

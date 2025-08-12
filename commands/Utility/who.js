@@ -2,8 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    usage: '`/who <member>`',
-    permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('who')
         .setDescription('Returns information on a given member.')

@@ -1,9 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
-    usage: '`/kick <member> [reason]`',
-    permissions: '`KickMembers`',
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Boots a member from the server.')
@@ -18,25 +16,28 @@ module.exports = {
         const user = interaction.options.getUser('member');
         const member = interaction.options.getMember('member');
         const reason = interaction.options.getString('reason');
+        const embed = new EmbedBuilder()
+            .setColor('#5866EF')
+            .setAuthor({name: `Kick User`, iconURL: interaction.guild.iconURL()});
         
-        if (!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) {
-            return await interaction.reply({ content: 'You do not have permission to kick a member.', ephemeral: true });
+        if (!member.permissions.has(PermissionFlagsBits.KickMembers)) {
+            embed.setDescription('You do not have permission to kick a member.');
+            return await interaction.reply({ embeds: [embed], ephemeral: true });
         }
 
-        if (member.user.bot || member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-            return await interaction.reply({ content: `You cannot kick ${member.displayName}.`, ephemeral: true });
+        if (member.user.bot || interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            embed.setDescription(`You cannot kick ${member.displayName}.`);
+            return await interaction.reply({ embeds: [embed], ephemeral: true });
         }
 
         await member.kick({reason: `${!reason ? "Unspecified" : `${reason}`}`});
         console.log(`${user.username} was banned from ${member.guild.name}.`);
-    
-        const embed = new EmbedBuilder()
-            .setColor('#5866EF')
-            .setAuthor({name: `Kicked ${user.tag}`, iconURL: user.avatarURL()})
-            .setDescription(`${member.displayName} was kicked.`)
-            .addFields (
-                { name: 'Reason', value: `${reason}`, inline: true }
-            )
+
+        embed.setAuthor({name: `Kicked ${user.tag}`, iconURL: user.avatarURL()})
+        embed.setDescription(`${member.displayName} was kicked.`)
+        embed.addFields (
+            { name: 'Reason', value: `${reason}`, inline: true }
+        );
     
         await interaction.reply({ embeds: [embed] });    
     },

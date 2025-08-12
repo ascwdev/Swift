@@ -3,8 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    usage: '`/dadjoke`',
-    permissions: '`none`',
     data: new SlashCommandBuilder()
         .setName('dadjoke')
         .setDescription('Replies with a dad joke. They\'re terrible.'),

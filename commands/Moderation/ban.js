@@ -1,9 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
-    usage: '`/ban`',
-    permissions: '`BanMembers`',
     data: new SlashCommandBuilder()
         .setName('ban')
         .setDescription('Bans a member from the server.')
@@ -18,34 +16,39 @@ module.exports = {
     async execute({ interaction }) {
         const user = interaction.options.getUser('member');
         const member = interaction.options.getMember('member');
-        const reason = interaction.options.getString('reason');   
+        const reason = interaction.options.getString('reason');
+        const embed = new EmbedBuilder()
+            .setColor('#5866EF')
+            .setAuthor({name: `Ban User`, iconURL: interaction.guild.iconURL()})
     
-        if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {    
-            return await interaction.reply({ content: 'You do not have permission to ban a member.', ephemeral: true });
+        if (!member.permissions.has(PermissionFlagsBits.BanMembers)) {
+            embed.setDescription('You do not have permission to ban a member.');
+            return await interaction.reply({ embeds: [embed], ephemeral: true });
         }
 
         if (!member) {
-            return await interaction.reply({ content: 'The specified member is not a part of this guild.', ephemeral: true});
+            embed.setDescription('The specified member is not a part of this guild.');
+            return await interaction.reply({ embeds: [embed], ephemeral: true});
         }
 
         if (member.user.bot) {
-            return await interaction.reply({ content: `You cannot ban ${member.displayName}.`, ephemeral: true });
+            embed.setDescription(`You cannot ban ${member.displayName}.`)
+            return await interaction.reply({ embeds: [embed] , ephemeral: true });
         }
         
-        if (member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-            return await interaction.reply({ content: `You cannot ban ${member.displayName}.`, ephemeral: true });
+        if (member.permissions.has(PermissionFlagsBits.Administrator)) {
+            embed.setDescription(`You cannot ban ${member.displayName}.`);
+            return await interaction.reply({ embeds: [embed], ephemeral: true });
         }
 
         member.ban({reason:`${!reason ? "None" : `${reason}`}`});
         console.log(`${member.displayName} was banned from ${member.guild.name}.`);
 
-        const embed = new EmbedBuilder()
-            .setColor('#5866EF')
-            .setAuthor({name: `Banned ${user.tag}`, iconURL: user.avatarURL()})
-            .setDescription(`${member.displayName} was banned.`)
-            .addFields (
-                { name: 'Reason', value: `${reason}`, inline: true },
-            );
+        embed.setAuthor({name: `Banned ${user.tag}`, iconURL: user.avatarURL()})
+        embed.setDescription(`${member.displayName} was banned.`)
+        embed.addFields (
+            { name: 'Reason', value: `${reason}`, inline: true },
+        );
             
         await interaction.reply({ embeds: [embed] });
     },

@@ -1,9 +1,7 @@
-const { SlashCommandBuilder, strikethrough, memberNicknameMention } = require('@discordjs/builders');
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
-    usage: '`/role info <role>`\n`/role add <role> [member]`\n`/role remove <role> [member]`',
-    permissions: '`ManageRoles`',
     data: new SlashCommandBuilder()
         .setName('role')
         .setDescription("Allows users to moderate guild roles and inspect individual roles.")
@@ -37,45 +35,42 @@ module.exports = {
             .addRoleOption(option => option
                 .setName('role')
                 .setDescription('The role you want a member to be removed from.')
-                .setRequired(true))),
+                .setRequired(true)))
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles | PermissionFlagsBits.Administrator),
     async execute({ interaction }) {
         if (interaction.options.getSubcommand() === 'add') {
             const member = interaction.options.getMember('member');
             const role = interaction.options.getRole('role');
-
-            if(!member) {
-                return await interaction.reply({content: 'The specified member is not a part of this guild.', ephemeral: true})
-            }
-
-            if(member.roles.cache.has(role.id)) {
-                return await interaction.reply({content: 'The specified member already is a part of this role.', ephemeral: true})
-            }
-
-            member.roles.add(role);
-
             const embed = new EmbedBuilder()
                 .setColor('#5866EF')
-                .setDescription(`${member} was added to ${role}.`)
-                .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()})
+                .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()});
+
+            if(member.roles.cache.has(role.id)) {
+                embed.setDescription('The specified member already is a part of this role..')
+                return await interaction.reply({embeds: [embed], ephemeral: true})
+            }
+
+            await member.roles.add(role);
+            embed.setDescription(`${member} was added to ${role}.`);
 
             return await interaction.reply({ embeds: [embed] })
         }
         else if (interaction.options.getSubcommand() === 'remove') {
             const member = interaction.options.getMember('member');
             const role = interaction.options.getRole('role');
-
-            if(!member.roles.cache.has(role.id)) {
-                return await interaction.reply({content: 'The specified member does not have this role.', ephemeral: true})
-            }
-
-            member.roles.remove(role);
-
             const embed = new EmbedBuilder()
                 .setColor('#5866EF')
-                .setDescription(`${member} was removed from ${role}.`)
-                .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()})
+                .setAuthor({ name: 'Role Change', iconURL: interaction.guild.iconURL()});
 
-            return await interaction.reply({ embeds: [embed] })
+            if(!member.roles.cache.has(role.id)) {
+                embed.setDescription('The specified member does not have this role.');
+                return await interaction.reply({ embeds: [embed], ephemeral: true});
+            }
+
+            await member.roles.remove(role);
+            embed.setDescription(`${member} was removed from ${role}.`);
+
+            return await interaction.reply({ embeds: [embed] });
         }
         else if (interaction.options.getSubcommand() === 'info') {
             const role = interaction.options.getRole('role');

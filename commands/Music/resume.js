@@ -2,8 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    usage: '`/resume`',
-    permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('resume')
         .setDescription('Resumes the current song.'),

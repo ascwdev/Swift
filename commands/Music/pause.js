@@ -2,8 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    usage: '`/pause`',
-    permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('pause')
         .setDescription('Pauses the current song.'),

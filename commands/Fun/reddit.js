@@ -3,8 +3,6 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    usage: '`/reddit <subreddit>`',
-    permissions: '`none`',
     data: new SlashCommandBuilder()
         .setName('reddit')
         .setDescription('Returns information from the Reddit API.')
@@ -15,6 +13,9 @@ module.exports = {
                     .setRequired(true)),
     async execute({ interaction }) {
         const sub = interaction.options.getString(`subreddit`);
+        const embed = new EmbedBuilder()
+            .setColor('#5866EF')
+            .setAuthor({name: 'Reddit'})
 
         try {
             await interaction.deferReply();
@@ -27,25 +28,25 @@ module.exports = {
 
             // If the post returns an error code, defer the user to this message.
             if(post.code) {
-                return await interaction.editReply({ content: post.message, ephemeral: true})
+                embed.setDescription(post.message);
+                return await interaction.editReply({ embeds: [embed], ephemeral: true });
             }
 
             // If the post is nsfw and the channel isn't age-restricted, defer the user to this message.
             if(post.nsfw && !interaction.channel.nsfw) {
-                return await interaction.editReply({ content: `Due to the adult content of this post, it can only be posted to Age-Restricted Channels.\n*(Age Restriction can be applied in the* ***channel settings*** *tab)*.`, ephemeral: true })
+                embed.setDescription(`Due to the adult content of this post, it can only be posted to Age-Restricted Channels.\n\n*(Age Restriction can be applied in the* ***channel settings*** *tab)*.`);
+                return await interaction.editReply({ embeds: [embed], ephemeral: true });
             }
 
             // Initially defer the reply to give Swift a chance to fetch and respond.
             //await interaction.deferReply();
 
-            const embed = new EmbedBuilder()
-            .setColor('#5866EF')
-            .setAuthor({name: `u/${post.author}`, url: `https://reddit.com/user/${post.author}`})
-            .setTitle(`${post.title}`)
-            .setURL(post.postLink)
-            .setDescription(`:arrow_up: Upvotes: ${post.ups}`)
-            .setFooter({text: `r/${post.subreddit}`, iconURL: `https://redditinc.com/hs-fs/hubfs/Reddit%20Inc/Brand/Reddit_Logo.png?width=400&height=400&name=Reddit_Logo.png`})
-            .setImage(post.url);
+            embed.setAuthor({name: `u/${post.author}`, url: `https://reddit.com/user/${post.author}`})
+            embed.setTitle(`${post.title}`)
+            embed.setURL(post.postLink)
+            embed.setDescription(`:arrow_up: Upvotes: ${post.ups}`)
+            embed.setFooter({text: `r/${post.subreddit}`, iconURL: `https://redditinc.com/hs-fs/hubfs/Reddit%20Inc/Brand/Reddit_Logo.png?width=400&height=400&name=Reddit_Logo.png`})
+            embed.setImage(post.url);
 
             await interaction.editReply({ embeds: [embed] });  
 

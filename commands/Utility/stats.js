@@ -3,12 +3,10 @@ const { EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = {
-    usage: '`/stats`',
-    permissions: 'none',
     data: new SlashCommandBuilder()
         .setName('stats')
         .setDescription("Shows a breakdown of Swift's statistics."),
-    async execute({ client, interaction }) {;
+    async execute({ client, interaction }) {
         
         // Initialise uptime units.
         let totalSeconds = (client.uptime / 1000);
