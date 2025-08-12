@@ -13,18 +13,18 @@ Additionally, below is a list of commands for operating Swift.
 
 ### 🎲 Fun
 
-| Command | Description | Permissions |
-| --- | --- | --- |
+| Command | Description | Usage | Permissions |
+| --- | --- | --- | --- |
 | `/flip` | Flips a coin. | 
 | `/roll` | Rolls a dice. |
 | `/dadjoke` | Tells a dad joke. They're all terrible. |
-| `/reddit` | Retrieves a random post from reddit from a given subreddit. |
-| `/level` | Shows a breakdown of level ranges for Souls games. |
+| `/reddit` | Retrieves a random post from reddit from a given subreddit. | `/reddit <subreddit>` |
+| `/level` | Shows a breakdown of level ranges for Souls games. | `/level <game> [level]` |
 
 ### 🎵 Music
 
-| Command | Description | Permissions |
-| --- | --- | --- |
+| Command | Description | Usage | Permissions |
+| --- | --- | --- | --- |
 | `/play` | Plays a song. The search query can either be in the form of keywords or a url. | 
 | `/pause` | Pauses the current song. |
 | `/resume` | Resumes the current song. |
@@ -34,20 +34,20 @@ Additionally, below is a list of commands for operating Swift.
 
 ### 🛡️ Moderation
 
-| Command | Description | Permissions |
-| --- | --- | --- |
-| `/role` | Shows role info. Can also be used to assign/revoke roles. | `ManageRoles` |
-| `/ban` | Bans a member. | `BanMembers` |
-| `/unban` | Unbans a previously banned user. | `BanMembers` |
-| `/banlist` | Shows a list of banned users. | `BanMembers` |
-| `/kick` | Kicks a member. | `KickUser` |
-| `/timeout` | Times a member out for a specified duration (in minutes). | `MuteMembers` |
+| Command | Description | Usage | Permissions |
+| --- | --- | --- | --- |
+| `/role` | Shows role info. Can also be used to assign/revoke roles. | `/role info <role>`, `/role add <role> [member]`, `/role remove <role> [member]` | | `ManageRoles` |
+| `/ban` | Bans a member. | `/ban <user>` | | `BanMembers` |
+| `/unban` | Unbans a previously banned user. | `/unban <user>` | `BanMembers` |
+| `/banlist` | Shows a list of banned users. | | `BanMembers` |
+| `/kick` | Kicks a member. | `/kick <user>` | `KickUser` |
+| `/timeout` | Times a member out for a specified duration (in minutes). | `/timeout <user> [duration]` | `MuteMembers` |
 
 ### 🛠️ Utility
 
-| Command | Description | Permissions |
-| --- | --- | --- |
-| `/server` | Shows server info. |
+| Command | Description | Usage | Permissions |
+| --- | --- | --- | --- |
+| `/server` | Shows server info. | 
 | `/stats` | Shows a breakdown of Swift's statistics. |
-| `/who` | Gets info on a user. |
-| `/git` | Gets info on a GitHub user/repository. |
+| `/who` | Gets info on a user. | `/who <user>` |
+| `/git` | Gets info on a GitHub user/repository. | `/git who <user>`, `/git repo <repository>` |
