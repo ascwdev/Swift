@@ -36,8 +36,8 @@ Additionally, below is a list of commands for operating Swift.
 
 | Command | Description | Usage | Permissions |
 | --- | --- | --- | --- |
-| `/role` | Shows role info. Can also be used to assign/revoke roles. | `/role info <role>`, `/role add <role> [member]`, `/role remove <role> [member]` | | `ManageRoles` |
-| `/ban` | Bans a member. | `/ban <user>` | | `BanMembers` |
+| `/role` | Shows role info. Can also be used to assign/revoke roles. | `/role info <role>`, `/role add <role> [member]`, `/role remove <role> [member]` | `ManageRoles` |
+| `/ban` | Bans a member. | `/ban <user>` | `BanMembers` |
 | `/unban` | Unbans a previously banned user. | `/unban <user>` | `BanMembers` |
 | `/banlist` | Shows a list of banned users. | | `BanMembers` |
 | `/kick` | Kicks a member. | `/kick <user>` | `KickUser` |
