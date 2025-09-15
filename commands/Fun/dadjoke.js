@@ -14,7 +14,7 @@ module.exports = {
         const data = await response.json();
         const embed = new EmbedBuilder()
             .setColor('#5866EF')
-            .setAuthor({name: `Dad Joke`, iconURL: `https://i.imgur.com/zqhNpO1.png`})
+            .setAuthor({name: `Dad Jokes`, iconURL: `https://i.imgur.com/zqhNpO1.png`})
             .setDescription(data.joke);
 
         await interaction.reply({ embeds: [embed] });
